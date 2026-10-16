@@ -120,3 +120,24 @@
 })();
 
 document.getElementById("yr").textContent = new Date().getFullYear();
+
+// Copy email to clipboard, with a fallback for browsers that block the clipboard API.
+(function () {
+  const btn = document.getElementById("copyEmail"), msg = document.getElementById("copied");
+  if (!btn) return;
+  btn.addEventListener("click", async () => {
+    const email = btn.dataset.email;
+    let ok = false;
+    try { await navigator.clipboard.writeText(email); ok = true; }
+    catch {
+      const t = document.createElement("textarea");
+      t.value = email; t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.append(t); t.select();
+      try { ok = document.execCommand("copy"); } catch {}
+      t.remove();
+    }
+    btn.textContent = ok ? "Copied" : "Copy email";
+    msg.textContent = ok ? "Email copied. Paste it into your mail app." : "Copy did not work here. Select the email address and copy it.";
+    setTimeout(() => { btn.textContent = "Copy email"; }, 2000);
+  });
+})();
