@@ -145,21 +145,14 @@ section { padding: 96px max(20px, calc((100vw - 1120px) / 2)); }
 .edu p { margin: 6px 0 0; }
 .edu .meta { color: var(--muted); font-size: 16px; }
 
-/* ---------- resume ---------- */
-.resume { background: var(--signal); color: #fff; }
-.resume > p { margin: -12px 0 30px; font-size: 19px; color: #DDE3FF; }
-.files { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 900px; }
-.file {
-  display: flex; align-items: center; gap: 18px; padding: 22px; border-radius: 18px; text-decoration: none;
-  background: var(--paper); color: var(--text); transition: transform 0.15s, box-shadow 0.15s;
+/* ---------- contact ---------- */
+.contact { background: var(--signal); color: #fff; }
+.contact > p { margin: -12px 0 30px; font-size: 19px; color: #DDE3FF; }
+.mail {
+  display: inline-block; padding: 16px 26px; border-radius: 14px; background: var(--paper); color: var(--ink);
+  font-weight: 700; font-size: 19px; text-decoration: none; word-break: break-all; transition: transform 0.15s, box-shadow 0.15s;
 }
-.file:hover { transform: translateY(-3px); box-shadow: 0 22px 40px -18px rgba(14, 19, 48, 0.7); }
-.ext { flex: none; display: grid; place-items: center; width: 62px; height: 72px; border-radius: 10px; font: 700 15px var(--display); color: #fff; background: var(--flame); }
-.file:nth-child(2) .ext { background: var(--ink); }
-.fn { font-weight: 700; font-size: 17px; word-break: break-all; }
-.fn small { display: block; margin-top: 4px; font-weight: 500; font-size: 14.5px; color: var(--muted); word-break: normal; }
-.contact { margin: 34px 0 0; font-size: 19px; }
-.contact a { font-weight: 700; color: #fff; text-underline-offset: 4px; }
+.mail:hover { transform: translateY(-2px); box-shadow: 0 22px 40px -18px rgba(14, 19, 48, 0.7); }
 
 footer { display: flex; justify-content: space-between; padding: 26px max(20px, calc((100vw - 1120px) / 2)); background: var(--ink); color: var(--on-ink-muted); font-size: 15px; }
 footer a { color: var(--on-ink); }
@@ -178,7 +171,6 @@ footer a { color: var(--on-ink); }
   section { padding-top: 64px; padding-bottom: 64px; }
   .links a:not(.pill) { display: none; }
   .job { grid-template-columns: 1fr; gap: 8px; }
-  .files { grid-template-columns: 1fr; }
   .tiles { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
   .tile { padding: 10px; }
   .tile b { font-size: 22px; }
@@ -187,5 +179,5 @@ footer a { color: var(--on-ink); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .pin, .btn, .file { transition: none; }
+  .pin, .btn, .mail { transition: none; }
 }

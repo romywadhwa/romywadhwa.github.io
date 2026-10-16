@@ -3,6 +3,6 @@
 Personal website for Romy Wadhwa, Senior Manager of Data Analytics.
 
 - `index.html`, `style.css`, `script.js`: the site (no build step, plain HTML/CSS/JS)
-- `assets/Romy_Wadhwa_Resume.pdf` and `assets/Romy_Wadhwa_Resume.docx`: resume downloads
+- `assets/Romy_Wadhwa_Resume.pdf`: resume download
 
-To update the resume, replace the two files in `assets/` with the same names, then commit and push.
+To update the resume, replace the PDF in `assets/` with the same name, then commit and push.
