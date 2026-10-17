@@ -44,7 +44,8 @@
 
 <nav class="nav">
   <a class="logo" href="#top" aria-label="Romy Wadhwa, home">RW</a>
-  <div class="links">
+  <button class="menu" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu"><span></span><span></span></button>
+  <div class="links" id="navLinks">
     <a href="#about">About</a>
     <a href="#work">Experience</a>
     <a href="#skills">Skills</a>
@@ -57,7 +58,7 @@
 <header class="hero" id="top">
   <div class="hero-text">
     <h1>Romy<br>Wadhwa</h1>
-    <p class="role">Senior Manager, Data Analytics <span class="at">at</span> <span class="badge">Walmart</span></p>
+    <p class="role"><span>Senior Manager, Data Analytics</span> <span class="where"><span class="at">at</span> <span class="badge">Walmart</span></span></p>
     <ul class="lede">
       <li>I build data pipelines for tables with billions of rows</li>
       <li>I create dashboards and business reviews that leaders use</li>
@@ -182,15 +183,15 @@
   <section class="skills" id="skills">
     <h2>What I work with</h2>
     <div class="skill-grid">
-      <div>
+      <div class="skill-row">
         <h3>Data engineering</h3>
         <ul class="chips"><li>Python</li><li>SQL</li><li>Google BigQuery</li><li>ETL pipelines</li><li>Element</li><li>Hive</li><li>Oracle</li><li>VBA</li></ul>
       </div>
-      <div>
+      <div class="skill-row">
         <h3>Dashboards and BI</h3>
         <ul class="chips"><li>Looker and LookML</li><li>Tableau</li><li>Power BI</li><li>Qlik Sense</li><li>DataIKU</li><li>Advanced Excel</li></ul>
       </div>
-      <div>
+      <div class="skill-row">
         <h3>Ecommerce and planning</h3>
         <ul class="chips"><li>Sales and traffic analysis</li><li>Deliveries and shipments</li><li>Catalog assortment</li><li>Walmart Fulfillment Services</li><li>Walmart Connect ad spend</li><li>Category planning</li><li>Seller performance</li><li>Predictive models</li></ul>
       </div>
@@ -199,11 +200,14 @@
 
   <section class="school" id="school">
     <h2>Education</h2>
-    <div class="edu">
-      <h3>Master of Science in Business Analytics</h3>
-      <p>University of Cincinnati, Carl H. Lindner College of Business</p>
-      <p class="meta">Aug 2022 to Aug 2023, GPA 3.9 out of 4.0</p>
-    </div>
+    <article class="job edu">
+      <div class="when">Aug 2022 to Aug 2023</div>
+      <div class="what">
+        <h3>Master of Science in Business Analytics</h3>
+        <p class="org">University of Cincinnati, Carl H. Lindner College of Business</p>
+        <p class="gpa"><b>3.9</b> GPA out of 4.0</p>
+      </div>
+    </article>
   </section>
 
   <section class="contact" id="contact">
