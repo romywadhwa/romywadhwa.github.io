@@ -61,7 +61,11 @@
   const mCost = el("circle", { r: 6, fill: "#FF6A3D", class: "marker", opacity: 0 });
   svg.append(cross, mRows, mCost);
 
+  // Below 680px the CSS makes the pin a static callout under the chart.
+  const pinFloats = () => getComputedStyle(pin).position === "absolute";
+
   function placePin() {
+    if (!pinFloats()) { pin.style.left = pin.style.top = ""; return; }
     const r = svg.getBoundingClientRect(), s = r.width / W;
     pin.style.left = (x(DROP + 1) * s - 14) + "px";
     pin.style.top = (y(cost[DROP + 1]) * s - pin.offsetHeight - 16) + "px";
@@ -106,7 +110,7 @@
     tip.innerHTML = `<b>${i < DROP ? "Before tuning" : "After tuning"}</b>Data volume ${Math.round(rows[i])}<br>Query cost ${Math.round(cost[i])}`;
     const left = x(i) * s, w = tip.offsetWidth;
     tip.style.left = Math.max(0, Math.min(r.width - w, left - w / 2)) + "px";
-    pin.style.opacity = "0.25";
+    if (pinFloats()) pin.style.opacity = "0.25";
   }
   function leave() {
     [cross, mRows, mCost].forEach(e => e.setAttribute("opacity", 0));
@@ -140,4 +144,18 @@ document.getElementById("yr").textContent = new Date().getFullYear();
     msg.textContent = ok ? "Email copied. Paste it into your mail app." : "Copy did not work here. Select the email address and copy it.";
     setTimeout(() => { btn.textContent = "Copy email"; }, 2000);
   });
+})();
+
+// Mobile menu toggle.
+(function () {
+  const nav = document.querySelector(".nav"), btn = nav && nav.querySelector(".menu");
+  if (!btn) return;
+  const set = open => {
+    nav.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open);
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  };
+  btn.addEventListener("click", () => set(!nav.classList.contains("open")));
+  nav.querySelectorAll(".links a").forEach(a => a.addEventListener("click", () => set(false)));
+  document.addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
 })();
