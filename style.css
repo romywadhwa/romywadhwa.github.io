@@ -57,7 +57,9 @@ section { padding: 96px max(20px, calc((100vw - 1120px) / 2)); }
 .hero > * { position: relative; min-width: 0; }
 .hero h1 { font: 700 clamp(52px, 7vw, 108px)/0.95 var(--display); letter-spacing: -0.045em; }
 .role { margin: 26px 0 10px; font-size: 20px; font-weight: 600; color: var(--mint); }
-.lede { margin: 0 0 34px; max-width: 30em; font-size: 19px; color: var(--on-ink-muted); }
+.lede { margin: 0 0 34px; padding: 0; list-style: none; max-width: 30em; font-size: 19px; color: var(--on-ink-muted); }
+.lede li { position: relative; padding-left: 26px; margin-bottom: 8px; }
+.lede li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 12px; height: 4px; border-radius: 2px; background: var(--mint); }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn { display: inline-flex; align-items: center; padding: 14px 22px; border-radius: 12px; font-weight: 700; font-size: 16px; text-decoration: none; transition: transform 0.15s, background 0.15s, border-color 0.15s; }
 .btn:active { transform: translateY(1px); }
@@ -103,7 +105,10 @@ section { padding: 96px max(20px, calc((100vw - 1120px) / 2)); }
 
 /* ---------- about ---------- */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-.about-grid p { margin: 0; font-size: 20px; line-height: 1.65; max-width: 34em; }
+.about-grid h3 { font-size: 18px; margin-bottom: 12px; color: var(--signal); }
+.about-grid ul { margin: 0; padding-left: 22px; max-width: 34em; }
+.about-grid li { margin-bottom: 10px; font-size: 19px; line-height: 1.55; }
+.about-grid li::marker { color: var(--flame); }
 
 /* ---------- work ---------- */
 .work { background: var(--fog); }
