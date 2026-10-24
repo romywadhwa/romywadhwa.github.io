@@ -35,11 +35,12 @@ section { padding: 96px max(20px, calc((100vw - 1120px) / 2)); }
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .logo { font: 700 18px var(--display); color: var(--on-ink); text-decoration: none; letter-spacing: -0.03em; }
-.links { display: flex; align-items: center; gap: 26px; }
-.links a { color: var(--on-ink-muted); text-decoration: none; font-size: 15px; font-weight: 500; }
-.links a:hover { color: var(--on-ink); }
-.links .pill { color: var(--ink); background: var(--mint); padding: 8px 16px; border-radius: 999px; font-weight: 700; }
-.links .pill:hover { color: var(--ink); background: #5BE9C1; }
+.links { display: flex; align-items: center; gap: 26px; margin: 0 26px 0 auto; }
+.links a { color: var(--on-ink-muted); text-decoration: none; font-size: 15px; font-weight: 500; white-space: nowrap; }
+.links a:hover, .links a[aria-current] { color: var(--on-ink); }
+.links a[aria-current] { text-decoration: underline 2px var(--mint); text-underline-offset: 8px; }
+.pill { flex: none; color: var(--ink); background: var(--mint); padding: 8px 16px; border-radius: 999px; font-size: 15px; font-weight: 700; text-decoration: none; }
+.pill:hover { background: #5BE9C1; }
 
 /* ---------- hero ---------- */
 .hero {
@@ -83,7 +84,7 @@ section { padding: 96px max(20px, calc((100vw - 1120px) / 2)); }
 .key.cost i { background: var(--flame); }
 .ill { margin-left: auto; font-weight: 500; font-size: 13px; opacity: 0.75; }
 .chart-wrap { position: relative; margin-top: 8px; }
-#chart { display: block; width: 100%; height: auto; overflow: visible; touch-action: none; }
+#chart { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
 #chart .grid line { stroke: rgba(255, 255, 255, 0.07); }
 #chart .line { fill: none; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
 #chart .rows { stroke: var(--mint); filter: drop-shadow(0 0 8px rgba(31, 214, 165, 0.6)); }
@@ -102,7 +103,7 @@ section { padding: 96px max(20px, calc((100vw - 1120px) / 2)); }
 }
 .pin b { display: block; font: 700 22px var(--display); letter-spacing: -0.03em; }
 .pin.show { opacity: 1; transform: none; }
-.pin::after { content: ""; position: absolute; left: 18px; bottom: -7px; border: 7px solid transparent; border-bottom: 0; border-top-color: var(--flame); }
+.pin::after { content: ""; position: absolute; left: var(--arrow, 18px); bottom: -7px; border: 7px solid transparent; border-bottom: 0; border-top-color: var(--flame); }
 .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
 .tile { padding: 14px; border-radius: 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); }
 .tile b { display: block; font: 700 28px/1.1 var(--display); letter-spacing: -0.03em; color: var(--paper); }
@@ -114,6 +115,7 @@ section { padding: 96px max(20px, calc((100vw - 1120px) / 2)); }
 .about-grid ul { margin: 0; padding-left: 22px; max-width: 34em; }
 .about-grid li { margin-bottom: 10px; font-size: 19px; line-height: 1.55; }
 .about-grid li::marker { color: var(--flame); }
+.about-grid ul:first-child { margin-top: 35px; } /* line up with the headed column */
 
 /* ---------- work ---------- */
 .work { background: var(--fog); }
@@ -141,7 +143,7 @@ section { padding: 96px max(20px, calc((100vw - 1120px) / 2)); }
 .arrows.out path { stroke: rgba(31, 214, 165, 0.6); }
 .hub { padding: 28px 20px; border-radius: 18px; text-align: center; background: var(--signal); box-shadow: 0 20px 60px -20px rgba(61, 90, 254, 0.9); }
 .hub b { display: block; font: 700 20px/1.2 var(--display); letter-spacing: -0.02em; color: #fff; }
-.hub span { display: block; margin-top: 6px; font-size: 15px; color: #DDE3FF; }
+.hub span { display: block; margin-top: 6px; font-size: 15px; color: #fff; }
 
 /* ---------- skills ---------- */
 .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
@@ -157,7 +159,7 @@ section { padding: 96px max(20px, calc((100vw - 1120px) / 2)); }
 
 /* ---------- contact ---------- */
 .contact { background: var(--signal); color: #fff; }
-.contact > p { margin: -12px 0 30px; font-size: 19px; color: #DDE3FF; }
+.contact > p { margin: -12px 0 30px; font-size: 19px; color: #fff; }
 .mail {
   display: inline-block; padding: 16px 26px; border-radius: 14px; background: var(--paper); color: var(--ink);
   font-weight: 700; font-size: 19px; text-decoration: none; word-break: break-all; transition: transform 0.15s, box-shadow 0.15s;
@@ -169,7 +171,7 @@ section { padding: 96px max(20px, calc((100vw - 1120px) / 2)); }
   color: #fff; font: 700 17px var(--body); cursor: pointer; transition: border-color 0.15s, background 0.15s;
 }
 .copy:hover { border-color: #fff; background: rgba(255, 255, 255, 0.1); }
-.copied { min-height: 1.6em; margin: 12px 0 0; font-weight: 600; color: #DDE3FF; }
+.copied { min-height: 1.6em; margin: 12px 0 0; font-weight: 600; color: #fff; }
 .view { margin: 16px 0 0; font-size: 16px; }
 .view a { color: var(--on-ink-muted); text-underline-offset: 4px; }
 .view a:hover { color: var(--on-ink); }
@@ -182,6 +184,7 @@ footer a { color: var(--on-ink); }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 44px; padding-top: 56px; }
   .hero h1 { font-size: clamp(52px, 13vw, 108px); }
   .about-grid, .skill-grid { grid-template-columns: 1fr; gap: 24px; }
+  .about-grid ul:first-child { margin-top: 0; }
   .flow { grid-template-columns: 1fr; gap: 14px; }
   .arrows { display: none; }
   .flow ul { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
@@ -190,7 +193,15 @@ footer a { color: var(--on-ink); }
 @media (max-width: 680px) {
   body { font-size: 17px; }
   section { padding-top: 64px; padding-bottom: 64px; }
-  .links a:not(.pill) { display: none; }
+  .nav { gap: 14px; }
+  .links {
+    flex: 1; min-width: 0; margin: 0; gap: 18px; overflow-x: auto; scrollbar-width: none;
+    mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+  }
+  .links::-webkit-scrollbar { display: none; }
+  .links a { padding: 6px 0; }
+  .links a:last-child { padding-right: 24px; }
   .job { grid-template-columns: 1fr; gap: 8px; }
   .tiles { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
   .tile { padding: 10px; }

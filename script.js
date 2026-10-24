@@ -63,7 +63,10 @@
 
   function placePin() {
     const r = svg.getBoundingClientRect(), s = r.width / W;
-    pin.style.left = (x(DROP + 1) * s - 14) + "px";
+    // Keep the callout inside the chart on narrow screens and move its arrow to stay on the point.
+    const target = x(DROP + 1) * s, left = Math.max(0, Math.min(r.width - pin.offsetWidth, target - 14));
+    pin.style.left = left + "px";
+    pin.style.setProperty("--arrow", (target - left - 7) + "px");
     pin.style.top = (y(cost[DROP + 1]) * s - pin.offsetHeight - 16) + "px";
   }
 
@@ -120,6 +123,24 @@
 })();
 
 document.getElementById("yr").textContent = new Date().getFullYear();
+
+// Highlight the nav link for the section currently in view.
+(function () {
+  const links = [...document.querySelectorAll(".links a")];
+  const sections = links.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+  if (!("IntersectionObserver" in window) || !sections.length) return;
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      links.forEach(a => {
+        const on = a.getAttribute("href") === "#" + e.target.id;
+        if (on) { a.setAttribute("aria-current", "true"); a.parentElement.scrollLeft = a.offsetLeft - a.parentElement.offsetLeft - 8; }
+        else a.removeAttribute("aria-current");
+      });
+    }
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  sections.forEach(s => io.observe(s));
+})();
 
 // Copy email to clipboard, with a fallback for browsers that block the clipboard API.
 (function () {
